@@ -9,7 +9,7 @@ const api = {
         return response.json();
     },
 
-    post: async (url: string, data: null) => {
+    post: async (url: string, data: unknown) => {
         const response = await fetch(baseUrl+url, {
             method: 'POST',
             headers: {

@@ -30,7 +30,7 @@ async function login(user: UserLogin):Promise<boolean> {
             return true;
         }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
+    } catch (error: unknown) {
         return false;
     }
     return true;
