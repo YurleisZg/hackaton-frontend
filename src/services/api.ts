@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:8000/api/';
+const baseUrl = 'http://localhost:8000';
 
 const api = {
     get: async (url: string) => {
