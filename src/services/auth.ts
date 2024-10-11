@@ -1,20 +1,21 @@
 import api from './api';
 
 interface UserRegister {
-    id: number;
+    id: string;
     name: string;
     email: string;
     password: string;
+    wallet: string;
 }
 
 interface UserLogin {
-    email: string;
+    id: string;
     password: string;
 }
 
 async function register(user: UserRegister):Promise<boolean> {
     try {
-        await api.post('public/auth/register', user);
+        await api.post('/registrar', user);
     } catch {
         return false;
     }
@@ -24,7 +25,6 @@ async function register(user: UserRegister):Promise<boolean> {
 async function login(user: UserLogin):Promise<boolean> {
     try {
         const server_response = await api.post('public/auth/login', user);
-        console.log(server_response.token);
         if (server_response.token) {
             localStorage.setItem('token', server_response.token);
             return true;
