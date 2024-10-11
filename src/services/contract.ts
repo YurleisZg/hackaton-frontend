@@ -12,7 +12,7 @@ interface contractModel {
 
 async function createContract(contract:contractModel) {
     try {
-        await api.post('public/auth/register', contract);
+        await api.post('/contract', contract);
     } catch {
         return false;
     }
