@@ -24,7 +24,7 @@ async function register(user: UserRegister):Promise<boolean> {
 
 async function login(user: UserLogin):Promise<boolean> {
     try {
-        const server_response = await api.post('public/auth/login', user);
+        const server_response = await api.post('/login', user);
         if (server_response.token) {
             localStorage.setItem('token', server_response.token);
             return true;
