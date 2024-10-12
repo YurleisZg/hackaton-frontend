@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { login } from '../services/auth'; // Importa la función de login
 
-// Definimos el tipo para los datos de login
-interface UserLogin {
-  id: string;
-  password: string;
-}
-
 export const Login: React.FC = () => {
+  // Definimos el tipo para los datos de login
+  interface UserLogin {
+    username: string;
+    password: string;
+  }
+
   const [id, setId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
@@ -18,8 +18,8 @@ export const Login: React.FC = () => {
     setLoading(true);
     setError('');
 
-    // Llamamos a la función login pasando el id (email) y password
-    const userLogin: UserLogin = { id: id, password };
+    // Llamamos a la función login pasando el email y password
+    const userLogin: UserLogin = { username: id, password };
     const isSuccess = await login(userLogin);
 
     if (!isSuccess) {
@@ -37,13 +37,13 @@ export const Login: React.FC = () => {
       <h2>Login</h2>
       <form onSubmit={handleSubmit} className="login-form">
         <div className="form-group">
-          <label>id:</label>
+          <label>Username:</label>
           <input
-            type="text"
+            type="username"
             value={id}
             onChange={(e) => setId(e.target.value)}
             required
-            placeholder="Enter your email"
+            placeholder="Enter your username (id)"
           />
         </div>
         <div className="form-group">
@@ -64,4 +64,5 @@ export const Login: React.FC = () => {
     </div>
   );
 };
+
 export default Login;
