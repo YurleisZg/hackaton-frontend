@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import { Login } from './components/login';
+import Login from './components/login';
 import Register from './components/register';
 import TeacherRegister from './components/techerRegister'; // Corrige el nombre del archivo
 

@@ -32,22 +32,20 @@ async function connect():Promise<boolean> {
 }
 
 
-async function login(user: UserLogin): Promise<boolean> {
+async function login(user: UserLogin):Promise<boolean> {
     try {
-        const formData = new FormData();
-        formData.append('username', user.username);
-        formData.append('password', user.password);
-
-        const server_response = await api.postFormData('/token', formData);
+        const server_response = await api.post('/token', user);
+        console.log(server_response.token);
         if (server_response.token) {
             localStorage.setItem('token', server_response.token);
             return true;
         }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-        console.error('Login error:', error);
         return false;
     }
-    return false; // Cambié el retorno a false si no hay token
+    return true;
 }
+
 
 export { register, login, connect };

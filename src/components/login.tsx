@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
-import { login } from '../services/auth'; // Importa la función de login
+import { login } from '../services/auth';
 
-export const Login: React.FC = () => {
-  const [username, setUsername] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [error, setError] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
+const Login: React.FC = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
-    // Crear un FormData
-    const formData = new FormData();
-    formData.append('username', username);
-    formData.append('password', password);
+    // Crear el objeto de usuario para el login
+    const userLogin = {
+      username,
+      password,
+    };
 
-    const isSuccess = await login(formData); // Enviar FormData
-
+    const isSuccess = await login(userLogin); // Enviar el objeto directamente
     if (!isSuccess) {
       setError('Login failed. Please check your credentials.');
     } else {

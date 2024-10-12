@@ -25,18 +25,26 @@ const api = {
         return response.json();
     },
 
-    auth_post: async (url: string, data: unknown) => {
-    postFormData: async (url: string, formData: FormData) => {
+    auth_post:  async (url: string, teacherData: unknown) => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            throw new Error('No token found');
+        }
+    
         const response = await fetch(baseUrl + url, {
             method: 'POST',
-            body: formData, 
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(teacherData)
         });
+    
         if (!response.ok) {
-            throw new Error('Failed to post FormData, error: ' + response.statusText);
+            throw new Error('Failed to fetch data, error: ' + response.statusText);
         }
         return response.json();
     },
-
 
     auth_get: async (url: string) => {
         const token = localStorage.getItem('token');
@@ -50,7 +58,7 @@ const api = {
                 'Authorization': 'Bearer ' + token,
                 'Content-Type': 'application/json' // Asegúrate de indicar el tipo de contenido
             },
-            body: JSON.stringify(data) // Convertir los datos a JSON
+            // body: JSON.stringify(data) // Convertir los datos a JSON
         });
     
         if (!response.ok) {
@@ -58,6 +66,6 @@ const api = {
         }
         return response.json();
     }
-}
+};
 
 export default api;
