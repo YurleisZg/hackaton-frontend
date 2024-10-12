@@ -25,7 +25,7 @@ const api = {
         return response.json();
     },
 
-    auth_post:  async (url: string, teacherData: unknown) => {
+    auth_post:  async (url: string, data: unknown) => {
         const token = localStorage.getItem('token');
         if (!token) {
             throw new Error('No token found');
@@ -37,7 +37,7 @@ const api = {
                 'Authorization': 'Bearer ' + token,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(teacherData)
+            body: JSON.stringify(data)
         });
     
         if (!response.ok) {
@@ -64,7 +64,7 @@ const api = {
             throw new Error('Failed to fetch data, error: ' + response.statusText);
         }
         return response.json();
-    }
+    },
 };
 
 export default api;
