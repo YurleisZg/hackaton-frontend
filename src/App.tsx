@@ -1,47 +1,31 @@
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/home/Home';
-import SearchPage from './pages/search/Search';
 import Profile from './pages/profile/Profile';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Contract from './pages/contract/Contract';
+import ExamplePage from './pages/search/Search';
+import Layout from './components/Layout/Layout';
 
+import './App.css'
 
-function App() {
- // Estado para controlar el componente a mostrar
-
+const App: React.FC = () => {
   return (
-    <>
-
-    {/* <Home></Home> */}
-    {/*<Profile></Profile>*/}
-     {/*<SearchPage></SearchPage>*/}
-     <Contract/>
-
-    <Home></Home> 
-    {/*<Profile></Profile>
-    <SearchPage></SearchPage>*/}
-
-    
-      {/* <div>
-        <button onClick={() => setIsLogin(true)}>Login</button>
-        <button onClick={() => setIsLogin(false)}>Register</button>
-      </div> */}
-
-      {/* Renderiza el componente según el estado */}
-      {/* {isLogin ? <Login /> : <Register />} */}
-
-      {/*<div>
-        {/* Botones para alternar entre Login, Register y Teacher Register 
-        <button onClick={() => setCurrentComponent('login')}>Login</button>
-        <button onClick={() => setCurrentComponent('register')}>Register</button>
-        <button onClick={() => setCurrentComponent('teacherRegister')}>Teacher Register</button>
-      </div>*/}
-
-      {/* Renderiza el componente según el estado }
-      {currentComponent === 'login' && <Login />}
-      {currentComponent === 'register' && <Register />}
-      {currentComponent === 'teacherRegister' && <TeacherRegister />}*/}
-    </> 
+    <Router>
+      <div className='app-container'>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Home />} />
+          {/* Rutas protegidas */}
+          <Route path="/profile" element={<Profile/>} />
+          <Route path="/contract" element={<ProtectedRoute element={Contract} />} />
+          <Route path="/search" element={<ProtectedRoute element={ExamplePage} />} />
+        </Routes>
+      </Layout>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;

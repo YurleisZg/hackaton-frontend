@@ -37,7 +37,7 @@ async function login(user: UserLogin):Promise<boolean> {
         const server_response = await api.post('/token', user);
         console.log(server_response.token);
         if (server_response.token) {
-            localStorage.setItem('token', server_response.token);
+            localStorage.setItem('token', server_response.access_token);
             return true;
         }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
