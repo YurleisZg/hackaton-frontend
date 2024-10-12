@@ -1,0 +1,189 @@
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+/* .shadow-lg { */
+/*   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); */
+/* } */
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  font-weight: bold;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.text-gray-500 {
+  color: #6b7280;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.w-5, .h-5 {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.w-16, .h-16 {
+  width: 94px;
+  height: 94px;
+}
+
+.bg-gray-300 {
+  background-color: #d1d5db;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.bg-gray-100 {
+  background-color: #f3f4f6;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.rounded {
+  border-radius: 0.25rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.text-red-500 {
+  color: #ef4444;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-green-500 {
+  color: #10b981;
+}
+
+.text-gray-600 {
+  color: #4b5563;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mates{
+  justify-content: center;
+  align-items: center;
+}
+
+.joint{
+  display: flex;
+  flex-direction: row;
+  gap: 60px;
+  position: relative;
+}
+
+.chain-to{
+  position: absolute;
+  left: 30%;
+  top: 32%;
+}
+
+.hash-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 5px;
+}
+
+.description{
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  padding-bottom: 20px;
+}
+
+.description h2{
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.item-container{
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.list-of-content{
+  box-sizing: border-box;
+  padding: 0px;
+}
+
+.list-of-content.open{
+  padding: 2px;
+}
+
+.item-name{
+  font-size: 0.95rem;
+}
+
+.list-of-container{
+  min-width: 0;
+}
