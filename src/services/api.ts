@@ -25,14 +25,21 @@ const api = {
         return response.json();
     },
 
-    auth_get: async (url: string) => {
-
+    auth_post: async (url: string, data: unknown) => {
         const token = localStorage.getItem('token');
         if (!token) {
             throw new Error('No token found');
         }
-
-        const response = await fetch(baseUrl+url, {headers: {'Authorization': 'Bearer ' + token}});
+    
+        const response = await fetch(baseUrl + url, {
+            method: 'POST', // Asegúrate de usar el método POST
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json' // Asegúrate de indicar el tipo de contenido
+            },
+            body: JSON.stringify(data) // Convertir los datos a JSON
+        });
+    
         if (!response.ok) {
             throw new Error('Failed to fetch data, error: ' + response.statusText);
         }
