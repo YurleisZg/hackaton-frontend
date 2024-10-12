@@ -8,7 +8,7 @@ interface UserLogin {
 }
 
 export const Login: React.FC = () => {
-  const [email, setEmail] = useState<string>('');
+  const [id, setId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -19,7 +19,7 @@ export const Login: React.FC = () => {
     setError('');
 
     // Llamamos a la función login pasando el id (email) y password
-    const userLogin: UserLogin = { id: email, password };
+    const userLogin: UserLogin = { id: id, password };
     const isSuccess = await login(userLogin);
 
     if (!isSuccess) {
@@ -37,11 +37,11 @@ export const Login: React.FC = () => {
       <h2>Login</h2>
       <form onSubmit={handleSubmit} className="login-form">
         <div className="form-group">
-          <label>Email:</label>
+          <label>id:</label>
           <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
             required
             placeholder="Enter your email"
           />

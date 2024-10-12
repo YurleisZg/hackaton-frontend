@@ -37,7 +37,7 @@ const Register: React.FC = () => {
       email: user.email,
       password: user.password,
       wallet: user.wallet,
-      registration_hash: '1234567890'
+      registration_hash: "1234567890"
     };
 
     const success = await register(data);
