@@ -1,4 +1,4 @@
-const baseUrl = 'http://127.0.0.1:8000';
+const baseUrl = 'http://localhost:8000';
 
 const api = {
     get: async (url: string) => {
@@ -9,12 +9,15 @@ const api = {
         return response.json();
     },
 
-    post: async (url: string, data: unknown) => {
-        const response = await fetch(baseUrl+url, {
+    post: async (url: string, data:unknown) => {
+        console.log((JSON.stringify(data).toString()));
+        const response = await fetch(baseUrl + url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-            },
+                'accept': 'application/json', 
+                'Access-Control-Allow-Origin': '*'
+              },
             body: JSON.stringify(data),
         });
         if (!response.ok) {

@@ -6,7 +6,6 @@ interface UserRegister {
     email: string;
     password: string;
     wallet: string;
-    registration_hashstring: string;
 }
 
 interface UserLogin {
@@ -16,7 +15,7 @@ interface UserLogin {
 
 async function register(user: UserRegister):Promise<boolean> {
     try {
-        await api.post('/registrar', user);
+        await api.post('/registrar/', user);
     } catch {
         return false;
     }

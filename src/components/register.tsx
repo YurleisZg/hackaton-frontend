@@ -7,8 +7,7 @@ export const Register = () => {
     name: '',
     email: '',
     password: '',
-    wallet: '', 
-    registration_hashstring: ''
+    wallet: '' 
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +18,16 @@ export const Register = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Evita el comportamiento predeterminado del formulario
 
-    const success = await register(user);
+    console.log(user);
+    const data = {
+      "id": user.id,
+      "name": user.name,
+      "email": user.email,
+      "password": user.password,
+      "wallet": user.wallet,
+      "registration_hash": "1234567890"
+    }
+    const success = await register(data);
     if (success) {
       // Aquí puedes manejar el éxito, por ejemplo, redirigir al usuario
       alert('Registro exitoso');
@@ -43,11 +51,11 @@ export const Register = () => {
         </div>
         <div>
           <label>Email: </label>
-          <input type="text" name="email" value={user.email} onChange={handleChange} required />
+          <input type="email" name="email" value={user.email} onChange={handleChange} required />
         </div>
         <div>
           <label>Password: </label>
-          <input type="text" name="password" value={user.password} onChange={handleChange} required />
+          <input type="password" name="password" value={user.password} onChange={handleChange} required />
         </div>
         <div>
           <label>Wallet: </label>
