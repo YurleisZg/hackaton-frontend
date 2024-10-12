@@ -20,42 +20,39 @@ const Profile: React.FC = () => {
 
   // Datos de ejemplo
   const certifications = [
-    { id: 1, name: "Certificación 1", users: [{ id: 1, name: 'User 1', avatar }] },
-    { id: 2, name: "Certificación 2", users: [{ id: 2, name: 'User 2', avatar }] },
+    { id: 1, name: "Certificación en Inteligencia Artificial (CS108)", users: [] },
+    { id: 2, name: "Certificación en Desarrollo Full Stack (CS121)", users: [] },
   ];
 
   const courses = [
-    { id: 1, name: "Curso 1", users: [{ id: 3, name: 'User 3', avatar }] },
-    { id: 2, name: "Curso 2", users: [{ id: 4, name: 'User 4', avatar }] },
+    { id: 1, name: "Programación Web (CS107)", users: [] },
+    { id: 2, name: "Criptografía y Seguridad de la Información (CS117)", users: [] },
+    { id: 3, name: "Ciencia de Datos (CS112)", users: [] },
   ];
 
   const groups = [
-    { id: 1, name: "Grupo de Estudio 1", users: [{ id: 1, name: 'User 1', avatar }] },
-    { id: 2, name: "Grupo de Estudio 2", users: [{ id: 2, name: 'User 2', avatar }] },
-    { id: 3, name: "Grupo de Estudio 3", users: [{ id: 3, name: 'User 3', avatar }] },
+    { id: 1, name: "Grupo de Estudio de IA", users: [] },
+    { id: 2, name: "Grupo de Desarrollo Web", users: [] },
   ];
 
   const currentProfessors = [
-    { id: 1, name: "Profesor A", subject: "Matemáticas", users: [{ id: 1, name: 'User 1', avatar }] },
-    { id: 2, name: "Profesor B", subject: "Historia", users: [{ id: 2, name: 'User 2', avatar }] },
-    { id: 3, name: "Profesor C", subject: "Ciencias", users: [{ id: 3, name: 'User 3', avatar }] },
+    { id: 1, name: "Profesor de Ciencia de Datos", subject: "Ciencia de Datos", users: [{ id: 1, name: 'User 1', avatar }] },
+    { id: 2, name: "Profesor de Programación Web", subject: "Programación Web", users: [{ id: 2, name: 'User 2', avatar }] },
   ];
 
   const logs = [
-    { id: 1, action: "Inscripción en Curso 1", date: "2024-10-01" },
-    { id: 2, action: "Asistencia a Clase de Matemáticas", date: "2024-10-02" },
-    { id: 3, action: "Entrega de Tarea 1", date: "2024-10-05" },
-    { id: 4, action: "Inscripción en Curso 2", date: "2024-10-08" },
+    { id: 1, action: "Inscripción en Curso: Criptografía y Seguridad de la Información", date: "2024-10-01" },
+    { id: 2, action: "Finalización del Curso: Programación Web", date: "2024-09-30" },
+    { id: 3, action: "Asistencia a Clase de Ciencia de Datos", date: "2024-09-25" },
   ];
 
   return (
     <div className="container">
       <div className="column column-left">
         <img className="circular-image" src={avatar} alt="Avatar" style={{ width: '215px', height: '215px' }} />
-        <h2>{/* Cambia esto según la variable que desees */}Nombre del Usuario</h2>
+        <h2>Mark Zuckerberg</h2>
         <p>Tipo de usuario: Profesor</p>
-        {/* Si es profesor, añadir el precio */}
-        <p>Precio por hora: $20/hrs</p>
+        <p>Precio por hora: $500/hrs</p>
         
         <button onClick={() => console.log('Agregar Certificado')}>Agregar Certificado</button>
         <ListOf title="Certificaciones" itemCount={certifications.length} isOpen={certificationsOpen} toggleList={toggleCertifications}>
@@ -82,8 +79,8 @@ const Profile: React.FC = () => {
       </div>
 
       <div className="column column-right">
-        <p>Wallet-ID: <span>{/* Simula un hash aquí */}1234abcd5678efgh</span></p>
-        <p>Descripción del usuario: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Wallet-ID: <span>abcd1234efgh5678ijkl</span></p>
+        <p>Descripción del usuario: Co-fundador de Facebook, apasionado por la tecnología, la educación y la inteligencia artificial.</p>
 
         <ListOf title="Grupo" itemCount={groups.length} isOpen={groupsOpen} toggleList={toggleGroups}>
           {groupsOpen && groups.map(group => (
