@@ -9,7 +9,7 @@ interface UserRegister {
 }
 
 interface UserLogin {
-    id: string;
+    username: string;
     password: string;
 }
 
@@ -32,18 +32,22 @@ async function connect():Promise<boolean> {
 }
 
 
-async function login(user: UserLogin):Promise<boolean> {
+async function login(user: UserLogin): Promise<boolean> {
     try {
-        const server_response = await api.post('/login', user);
+        const formData = new FormData();
+        formData.append('username', user.username);
+        formData.append('password', user.password);
+
+        const server_response = await api.postFormData('/token', formData);
         if (server_response.token) {
             localStorage.setItem('token', server_response.token);
             return true;
         }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error: unknown) {
+    } catch (error) {
+        console.error('Login error:', error);
         return false;
     }
-    return true;
+    return false; // Cambié el retorno a false si no hay token
 }
 
 export { register, login, connect };

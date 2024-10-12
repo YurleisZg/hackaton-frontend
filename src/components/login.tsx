@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import { login } from '../services/auth'; // Importa la función de login
 
-// Definimos el tipo para los datos de login
-interface UserLogin {
-  id: string;
-  password: string;
-}
-
 export const Login: React.FC = () => {
-  const [id, setId] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -18,14 +12,16 @@ export const Login: React.FC = () => {
     setLoading(true);
     setError('');
 
-    // Llamamos a la función login pasando el id (email) y password
-    const userLogin: UserLogin = { id: id, password };
-    const isSuccess = await login(userLogin);
+    // Crear un FormData
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('password', password);
+
+    const isSuccess = await login(formData); // Enviar FormData
 
     if (!isSuccess) {
       setError('Login failed. Please check your credentials.');
     } else {
-      // Acciones a realizar si el login es exitoso
       console.log('Login successful!');
     }
 
@@ -37,13 +33,13 @@ export const Login: React.FC = () => {
       <h2>Login</h2>
       <form onSubmit={handleSubmit} className="login-form">
         <div className="form-group">
-          <label>id:</label>
+          <label>Username:</label>
           <input
             type="text"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
-            placeholder="Enter your email"
+            placeholder="Enter your username"
           />
         </div>
         <div className="form-group">
@@ -64,4 +60,5 @@ export const Login: React.FC = () => {
     </div>
   );
 };
+
 export default Login;
