@@ -1,0 +1,83 @@
+.search-container {
+  box-sizing: border-box;
+  min-width: 770px; /* Establece el ancho fijo */
+  margin: 0 auto; /* Centra el contenedor horizontalmente */
+  border-radius: 8px;
+  background-color: white; /* Fondo blanco para coincidir con CourseCard */
+  display: flex;
+  flex-direction: column;
+}
+
+.search-form {
+  position: relative;
+}
+
+.search-form input{
+  width: 720px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 2.5rem 10px 10px; /* Mayor padding para comodidad */
+  box-sizing: border-box;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  font-size: 0.875rem; /* Tamaño de fuente más legible */
+  transition: border-color 0.3s; /* Transición suave */
+}
+
+.search-input:focus {
+  border-color: #007bff; /* Color azul al enfocar */
+  outline: none; /* Sin contorno */
+}
+
+.search-button {
+  position: absolute;
+  right: 0.5rem; /* Espaciado del borde */
+  top: 0.5rem; /* Alinear verticalmente */
+  height: calc(100% - 1rem); /* Ajuste para el padding */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5rem;
+  background: #007bff; /* Fondo azul para el botón */
+  border: none;
+  border-radius: 4px; /* Bordes redondeados */
+  color: white; /* Texto blanco */
+  cursor: pointer;
+  transition: background-color 0.3s; /* Transición suave */
+}
+
+.search-button:hover {
+  background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+}
+
+.search-loading {
+  margin-top: 0.5rem;
+  color: var(--muted-foreground);
+}
+
+.search-results {
+  margin-top: 1rem;
+  list-style-type: none;
+  padding: 0;
+}
+
+.search-result-item {
+  padding: 0.5rem;
+  background-color: #f0f0f0; /* Fondo claro para los resultados */
+  border-radius: 0.375rem;
+  margin-bottom: 0.5rem;
+  transition: background-color 0.3s; /* Transición suave */
+  width: 100%;
+}
+
+.search-result-item:hover {
+  background-color: #e0e0e0; /* Color más oscuro al pasar el ratón */
+}
+
+/* Estilos para mejorar la accesibilidad */
+.search-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}

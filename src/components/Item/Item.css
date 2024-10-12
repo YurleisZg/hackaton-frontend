@@ -1,0 +1,147 @@
+.item-container {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  background-color: #ffffff;
+}
+
+.item-container:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.left-side {
+  width: 300px;
+  padding-right: 16px;
+}
+
+.mid-side {
+  flex-grow: 1;
+  padding: 0 16px;
+  border-left: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+}
+
+.right-side {
+  width: 200px;
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.item-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item-name {
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #333;
+}
+
+.item-label {
+  background-color: #f0f0f0;
+  border-radius: 16px;
+  padding: 4px 12px;
+  font-size: 0.85em;
+  font-weight: 500;
+  color: #666;
+  display: inline-block;
+}
+
+.item-description {
+  margin: 0;
+  font-size: 0.95em;
+  color: #666;
+  line-height: 1.5;
+}
+
+.item-users {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.user-container {
+  position: relative;
+  margin-right: -8px;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-name {
+  margin-left: 8px;
+  font-size: 0.9em;
+  color: #333;
+}
+
+.user-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  border: 2px solid #ffffff;
+  font-size: 0.8em;
+  color: #666;
+  font-weight: bold;
+  position: relative;
+  cursor: pointer;
+}
+
+.tooltip {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.user-preview:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tooltip-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+}
+
+.tooltip-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.tooltip-item span {
+  font-size: 0.9em;
+  color: #333;
+}
