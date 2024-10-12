@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import { teacherRegistration } from '../services/teacherRegistration'; // Asegúrate de que la ruta sea correcta
 
 const TeacherRegister: React.FC = () => {
-  const [hourValue, setHourValue] = useState<number>(0);
+  const [hourValue, setHourValue] = useState<number>(0); // Inicializa con 0
   const [courses, setCourses] = useState<string[]>([]);
   const [newCourse, setNewCourse] = useState<string>('');
   const [registrationSuccess, setRegistrationSuccess] = useState<boolean | null>(null); // Para manejar el estado de registro
 
   // Manejo de cambios en el campo de precio por hora
   const handleHourChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setHourValue(Number(e.target.value));
+    const value = Number(e.target.value);
+    // Asegúrate de que el valor no sea negativo
+    if (value >= 0) {
+      setHourValue(value);
+    }
   };
 
   // Función para agregar un nuevo curso
@@ -28,6 +32,9 @@ const TeacherRegister: React.FC = () => {
       hour_value: hourValue,
       courses: courses
     };
+
+    // Mostrar los datos en consola antes de enviarlos
+    console.log('Datos a enviar al backend:', teacherData);
 
     const success = await teacherRegistration(teacherData);
     setRegistrationSuccess(success); // Actualizar el estado según el resultado
