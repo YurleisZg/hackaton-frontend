@@ -109,8 +109,7 @@ const ExamplePage: React.FC = () => {
     },
   ];
   
-
-  const handleItemClick = (itemName: string, courseDetails: any) => {
+  const handleItemClick = (itemName: string, courseDetails: { name: string; teacherName: string; price: number; university: string; rating: string; date: string; startTime: string; endTime: string }) => {
     console.log(`${itemName} clicked`);
     setSelectedCourse(courseDetails);
   };
@@ -137,7 +136,7 @@ const ExamplePage: React.FC = () => {
             label={item.label}
             description={item.description}
             users={item.users}
-            onClick={() => handleItemClick(item.name, item.courseDetails)}
+            onClick={() => handleItemClick(item.name, { name: item.name, ...item.courseDetails })}
           >
             <button onClick={() => console.log(`Action 1 for ${item.name}`)}>Acción 1</button>
             <button onClick={() => console.log(`Action 2 for ${item.name}`)}>Acción 2</button>

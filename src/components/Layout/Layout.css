@@ -1,0 +1,30 @@
+/* Contenedor principal del layout */
+.layout-container {
+    display: flex;
+    min-height: 90%; /* Ocupa toda la altura de la ventana */
+    flex-direction: row; /* Sidebar y contenido en fila */
+  }
+  
+  /* Sidebar */
+  .sidebar-container {
+    width: 200px; /* Aseguramos un ancho fijo para el sidebar */
+    background-color: #1e3a8a;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh; /* Altura completa */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    flex-shrink: 0; /* Evita que el sidebar se encoja */
+  }
+  
+  /* Área principal del contenido */
+  .layout-main {
+    flex-grow: 1; /* El contenido ocupa todo el espacio restante */
+    padding: 20px; /* Espaciado para el contenido */
+    background-color: #f9fafb; /* Fondo claro */
+    overflow-y: auto; /* Scroll en caso de contenido largo */
+  }
+  
