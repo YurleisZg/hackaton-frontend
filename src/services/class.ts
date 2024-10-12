@@ -1,6 +1,5 @@
 import api from "./api";
 
-
 const getClass = async (): Promise<string[]> => {
     try {
         const response = await api.auth_get('/clases');
@@ -11,4 +10,4 @@ const getClass = async (): Promise<string[]> => {
     }
 };
 
-export { getClass};
+export { getClass };
