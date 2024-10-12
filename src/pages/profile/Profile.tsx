@@ -53,7 +53,7 @@ const Profile: React.FC = () => {
       <div className="column column-left">
         <img src={avatar} alt="Avatar" style={{ width: '215px', height: '215px' }} />
         <h2>{/* Cambia esto según la variable que desees */}Nombre del Usuario</h2>
-        <p>Tipo de usuario: Estudiante</p>
+        <p>Tipo de usuario: Profesor</p>
         {/* Si es profesor, añadir el precio */}
         <p>Precio por hora: $20/hrs</p>
         

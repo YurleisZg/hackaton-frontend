@@ -35,8 +35,8 @@ async function connect():Promise<boolean> {
 async function login(user: UserLogin):Promise<boolean> {
     try {
         const server_response = await api.post('/token', user);
-        console.log(server_response.token);
-        if (server_response.token) {
+        
+        if (server_response.access_token) {
             localStorage.setItem('token', server_response.access_token);
             return true;
         }
@@ -44,7 +44,7 @@ async function login(user: UserLogin):Promise<boolean> {
     } catch (error) {
         return false;
     }
-    return true;
+    return false;
 }
 
 

@@ -23,6 +23,14 @@ const Sidebar: React.FC = () => {
         >
           Cursos
         </NavLink>
+        <NavLink
+          to="/contract"
+          className={({ isActive }) =>
+            `sidebar-link ${isActive ? 'sidebar-link-active' : ''}`
+          }
+        >
+          Contratos
+        </NavLink>
       </nav>
     </div>
   );
