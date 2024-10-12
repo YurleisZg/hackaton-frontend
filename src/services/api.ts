@@ -25,19 +25,46 @@ const api = {
         return response.json();
     },
 
-    auth_get: async (url: string) => {
-
+    auth_post:  async (url: string, data: unknown) => {
         const token = localStorage.getItem('token');
         if (!token) {
             throw new Error('No token found');
         }
-
-        const response = await fetch(baseUrl+url, {headers: {'Authorization': 'Bearer ' + token}});
+    
+        const response = await fetch(baseUrl + url, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+    
         if (!response.ok) {
             throw new Error('Failed to fetch data, error: ' + response.statusText);
         }
         return response.json();
-    }
-}
+    },
+
+    auth_get: async (url: string) => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            throw new Error('No token found');
+        }
+    
+        const response = await fetch(baseUrl + url, {
+            method: 'POST', 
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json' // Asegúrate de indicar el tipo de contenido
+            }
+        });
+    
+        if (!response.ok) {
+            throw new Error('Failed to fetch data, error: ' + response.statusText);
+        }
+        return response.json();
+    },
+};
 
 export default api;
