@@ -25,6 +25,18 @@ const api = {
         return response.json();
     },
 
+    postFormData: async (url: string, formData: FormData) => {
+        const response = await fetch(baseUrl + url, {
+            method: 'POST',
+            body: formData, 
+        });
+        if (!response.ok) {
+            throw new Error('Failed to post FormData, error: ' + response.statusText);
+        }
+        return response.json();
+    },
+
+
     auth_get: async (url: string) => {
 
         const token = localStorage.getItem('token');
