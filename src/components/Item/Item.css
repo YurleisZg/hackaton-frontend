@@ -1,0 +1,120 @@
+.item-container {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  cursor: pointer; /* Indica que es interactivo */
+}
+
+.item-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.item-name {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.item-label {
+  background-color: #e0e0e0;
+  border-radius: 12px;
+  padding: 5px 10px;
+  font-size: 0.9em;
+}
+
+.item-description {
+  margin: 10px 0;
+  font-size: 0.9em;
+}
+
+.item-users {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.user-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  margin-right: 5px;
+  font-size: 0.8em;
+  color: #333;
+  font-weight: bold;
+}
+
+.item-container {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex; /* Cambiado a flex */
+  align-items: center; /* Alinear elementos verticalmente */
+  cursor: pointer; /* Indica que es interactivo */
+}
+
+.left-side {
+  width: 300px; /* Ancho fijo para el lado izquierdo */
+}
+
+.mid-side {
+  flex-grow: 1; /* Ocupa el espacio restante */
+  display: flex; /* Para permitir la organización interna */
+  flex-direction: column; /* O alinear los elementos verticalmente si es necesario */
+}
+
+.right-side {
+  width: 200px; /* Ancho fijo para el lado derecho */
+}
+
+/* Estilo para el tooltip */
+/* Estilo para el tooltip */
+.tooltip {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Asegúrate de que el tooltip esté por encima de otros elementos */
+  left: 100%; /* Mueve el tooltip hacia la derecha */
+  top: 50%; /* Centra verticalmente */
+  transform: translateY(-50%); /* Ajusta la posición vertical para centrarlo */
+  margin-left: 10px; /* Espaciado adicional a la izquierda */
+}
+
+
+/* Estilo para los elementos dentro del tooltip */
+.tooltip-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px; /* Espaciado entre elementos */
+}
+
+/* Estilo para la imagen del tooltip */
+.tooltip-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 5px; /* Espacio entre imagen y nombre */
+}
+
+/* Opcional: Mover el tooltip al lado de la vista previa de usuarios */
+.user-preview {
+  position: relative; /* Para que el tooltip se posicione correctamente */
+}

@@ -45,6 +45,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow-y: auto;
 }
 
 .form-wrapper {
@@ -160,6 +161,81 @@ button:hover {
 .show-register {
   transform: translateX(-50%);
 }
+/* Estilo para el contenedor del slide button */
+.slide-button-container {
+  user-select: none;
+  display: flex;
+  align-items: center;
+  margin: 15px 0; /* Espacio vertical */
+}
 
+/* Estilo para el switch */
+.switch {
+  
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-left: 10px; /* Espacio entre texto y el switch */
+}
 
+/* Escondemos el checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
 
+/* Estilo para la barra del switch */
+.slider {
+  width: 150px;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px; /* Bordes redondeados */
+}
+
+/* El círculo dentro del switch */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%; /* Círculo */
+}
+
+/* Cambia el color del switch cuando se activa */
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+/* Mueve el círculo al activar el switch */
+input:checked + .slider:before {
+  transform: translateX(116px);
+}
+
+/* Estilo para el texto dentro del slide */
+.slider-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white; /* Cambia el color del texto */
+  font-weight: bold; /* Estilo en negrita */
+  font-size: 14px; /* Tamaño del texto */
+  transition: .4s;
+}
+
+/* Cambia el color del texto cuando se activa */
+input:checked + .slider .slider-text {
+  color: white; /* Cambia el color del texto a blanco cuando se activa */
+}

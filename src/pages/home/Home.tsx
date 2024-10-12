@@ -5,6 +5,7 @@ import imgUdc from '../../assets/logo_udc.png'; // Cambia la ruta según la ubic
 
 const Home = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const [isTeacher, setIsTeacher] = useState(false); // Estado para identificar si es profesor
   const [courses, setCourses] = useState([
     { id: 1, name: 'Curso 1', selected: false },
     { id: 2, name: 'Curso 2', selected: false },
@@ -21,7 +22,9 @@ const Home = () => {
     { id: 13, name: 'Curso 13', selected: false },
     { id: 14, name: 'Curso 14', selected: false },
     { id: 15, name: 'Curso 15', selected: false },
-]);
+  ]);
+  
+  const [animateCourses, setAnimateCourses] = useState(false); // Estado para manejar la animación
 
   const toggleForm = () => {
     setIsLogin(!isLogin);
@@ -33,18 +36,22 @@ const Home = () => {
     ));
   };
 
+  const handleTeacherToggle = () => {
+    setIsTeacher(prev => {
+      // Al cambiar isTeacher, reiniciamos la animación
+      setAnimateCourses(true);
+      setTimeout(() => setAnimateCourses(false), 0); // Reiniciamos la animación
+      return !prev;
+    });
+  };
+
   return (
     <div className='home-content'>
       <div className="home-details">
-        {/* TODO: Hacer que Students se cambie a Profesor */}
         <div className='logos-container'>
           <img className="logo-udc" src={imgUdc} alt="" />
           <img className="logo-hackathon" src={imgHackathon} alt="" />
         </div>
-        {/* <div className='content'>
-          <h1>{'Welcome'.toUpperCase()}</h1>
-          <h1>{'Student and Professor'.toUpperCase()}</h1>
-        </div> */}
       </div>
       <div className="form-container">
         <div className='form-change'>
@@ -77,28 +84,44 @@ const Home = () => {
                 </div>
                 <button type="submit">Register</button>
               </form>
-              {/* Checklist de cursos solo visible en el registro */}
-              <h3>Select Courses</h3>
-              <div className="courses-container">
-                {courses.map(course => (
-                  <div key={course.id}>
-                    <input
-                      type="checkbox"
-                      id={`course-${course.id}`}
-                      checked={course.selected}
-                      onChange={() => handleCourseChange(course.id)}
-                    />
-                    <label htmlFor={`course-${course.id}`}>{course.name}</label>
-                  </div>
-                ))}
+
+              {/* Slide Button para seleccionar entre Profesor y Estudiante */}
+              <div className="slide-button-container">
+                <label className="switch">
+                  <input type="checkbox" checked={isTeacher} onChange={handleTeacherToggle} />
+                  <span className="slider">
+                    <span className="slider-text">{isTeacher ? 'Profesor' : 'Estudiante'}</span>
+                  </span>
+                </label>
               </div>
+
+              {/* Checklist de cursos solo visible para profesores */}
+              {isTeacher && (
+                <>
+                  <h3>Select Courses</h3>
+                  <div className={`courses-container ${animateCourses ? 'show' : ''}`}>
+                    {courses.map(course => (
+                      <div key={course.id}>
+                        <input
+                          type="checkbox"
+                          id={`course-${course.id}`}
+                          checked={course.selected}
+                          onChange={() => handleCourseChange(course.id)}
+                        />
+                        <label htmlFor={`course-${course.id}`}>{course.name}</label>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
           </div>
+
           <div className="toggle-button">
-          <button onClick={toggleForm}>
-            {isLogin ? 'Switch to Register' : 'Switch to Login'}
-          </button>
-        </div>
+            <button onClick={toggleForm}>
+              {isLogin ? 'Switch to Register' : 'Switch to Login'}
+            </button>
+          </div>
         </div>
       </div>
     </div>
