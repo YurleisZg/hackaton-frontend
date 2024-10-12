@@ -10,8 +10,8 @@ function App() {
   return (
     <>
     <Home></Home> 
-    <Profile></Profile>
-    <SearchPage></SearchPage>
+    {/*<Profile></Profile>
+    <SearchPage></SearchPage>*/}
     
       {/* <div>
         <button onClick={() => setIsLogin(true)}>Login</button>

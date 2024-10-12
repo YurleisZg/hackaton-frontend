@@ -2,6 +2,21 @@ import React, { useState } from 'react';
 import './Home.css'; // Asegúrate de crear este archivo CSS
 import imgHackathon from '../../assets/hackathon.png'; // Cambia la ruta según la ubicación de tu imagen
 import imgUdc from '../../assets/logo_udc.png'; // Cambia la ruta según la ubicación de tu imagen
+import { register,login } from '../../services/auth'; // Importa la función de registro
+
+// Definimos la interfaz para el estado del usuario
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  wallet: string;
+}
+
+interface UserLogin {
+  username: string;
+  password: string;
+}
 
 const Home = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -45,6 +60,69 @@ const Home = () => {
     });
   };
 
+  const [id, setId] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const handleSubmitLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    // Llamamos a la función login pasando el email y password
+    const userLogin: UserLogin = { username: id, password };
+    console.log(userLogin);
+    const isSuccess = await login(userLogin);
+
+    if (!isSuccess) {
+      setError('Login failed. Please check your credentials.');
+    } else {
+      // Acciones a realizar si el login es exitoso
+      console.log('Login successful!');
+    }
+
+    setLoading(false);
+  };
+
+  const [user, setUser] = useState<User>({
+    id: '',
+    name: '',
+    email: '',
+    password: '',
+    wallet: ''
+  });
+
+  // Manejo de cambios en los campos del formulario
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
+  };
+
+  // Manejo del envío del formulario
+  const handleSubmitRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // Evita el comportamiento predeterminado del formulario
+
+    console.log(user);
+    const data = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      wallet: user.wallet,
+      registration_hash: "1234567890"
+    };
+
+    const success = await register(data);
+    if (success) {
+      // Acciones en caso de éxito, por ejemplo, redirigir o mostrar un mensaje
+      alert('Registro exitoso');
+    } else {
+      // Manejo de error, por ejemplo, mostrar mensaje de error
+      alert('Error en el registro');
+    }
+  };
+
   return (
     <div className='home-content'>
       <div className="home-details">
@@ -58,29 +136,48 @@ const Home = () => {
           <div className={`form-wrapper ${isLogin ? 'show-login' : 'show-register'}`}>
             <div className="form login-form">
               <h2>Login</h2>
-              <form onSubmit={() => {}}>
+              <form onSubmit={handleSubmitLogin}>
                 <div className="form-group">
                   <label>ID:</label>
-                  <input type="text" required placeholder="Enter your email" />
+                  <input type="text" value={id} 
+                  onChange={(e) => setId(e.target.value)} 
+                  required placeholder="Enter your email" />
                 </div>
                 <div className="form-group">
                   <label>Password:</label>
-                  <input type="password" required placeholder="Enter your password" />
+                  <input type="password" value={password} 
+                  onChange={(e) => setPassword(e.target.value)} 
+                  required placeholder="Enter your password" />
                 </div>
-                <button type="submit">Login</button>
+                {error && <div className="error-message">{error}</div>}
+                <button type="submit" disabled={loading}>
+                  {loading ? 'Logging in...' : 'Login'}
+                </button>
               </form>
             </div>
 
             <div className="form register-form">
               <h2>Register</h2>
-              <form onSubmit={() => {}}>
+              <form onSubmit={handleSubmitRegister}>
                 <div className="form-group">
-                  <label>ID:</label>
-                  <input type="text" required placeholder="Enter your email" />
+                  <label>ID: </label>
+                  <input type="text" value={user.id} onChange={handleChange} required placeholder="Enter your ID number" />
                 </div>
                 <div className="form-group">
-                  <label>Password:</label>
-                  <input type="password" required placeholder="Enter your password" />
+                  <label>Name: </label>
+                  <input type="text" value={user.name} onChange={handleChange} required placeholder="Enter your name" />
+                </div>
+                <div className="form-group">
+                  <label>Email: </label>
+                  <input type="email" value={user.email} onChange={handleChange} required placeholder="Enter your email address" />
+                </div>
+                <div className="form-group">
+                  <label>Password: </label>
+                  <input type="password" value={user.password} onChange={handleChange} required placeholder="Enter your password" />
+                </div>
+                <div className="form-group">
+                  <label>Wallet: </label>
+                  <input type="text" value={user.wallet} onChange={handleChange} required placeholder="Enter your wallet number" />
                 </div>
                 <button type="submit">Register</button>
               </form>
