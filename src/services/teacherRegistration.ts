@@ -14,5 +14,5 @@ interface teacherRegistration {
     }
     return true;
 }
-  
-  export {teacherRegistration};
+
+export {teacherRegistration};

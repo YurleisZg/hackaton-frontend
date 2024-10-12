@@ -72,7 +72,6 @@ const Home = () => {
 
     // Llamamos a la función login pasando el email y password
     const userLogin: UserLogin = { username: id, password };
-    console.log(userLogin);
     const isSuccess = await login(userLogin);
 
     if (!isSuccess) {
@@ -138,13 +137,13 @@ const Home = () => {
               <h2>Login</h2>
               <form onSubmit={handleSubmitLogin}>
                 <div className="form-group">
-                  <label>ID:</label>
+                  <label>ID: </label>
                   <input type="text" value={id} 
                   onChange={(e) => setId(e.target.value)} 
                   required placeholder="Enter your email" />
                 </div>
                 <div className="form-group">
-                  <label>Password:</label>
+                  <label>Password: </label>
                   <input type="password" value={password} 
                   onChange={(e) => setPassword(e.target.value)} 
                   required placeholder="Enter your password" />
