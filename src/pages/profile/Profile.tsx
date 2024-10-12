@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ListOf from '../../components/ListOf/ListOf'; // Ajusta la ruta según tu estructura
 import Item from '../../components/Item/Item'; // Ajusta la ruta según tu estructura
-import avatar from '../../assets/filip.svg'; // Ajusta la ruta según tu estructura
+import avatar from '../../assets/mark-zuckerberg.jpeg'; // Ajusta la ruta según tu estructura
 import './Profile.css';
 
 const Profile: React.FC = () => {
@@ -51,7 +51,7 @@ const Profile: React.FC = () => {
   return (
     <div className="container">
       <div className="column column-left">
-        <img src={avatar} alt="Avatar" style={{ width: '215px', height: '215px' }} />
+        <img className="circular-image" src={avatar} alt="Avatar" style={{ width: '215px', height: '215px' }} />
         <h2>{/* Cambia esto según la variable que desees */}Nombre del Usuario</h2>
         <p>Tipo de usuario: Profesor</p>
         {/* Si es profesor, añadir el precio */}

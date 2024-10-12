@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import './Home.css'; // Asegúrate de crear este archivo CSS
-import imgHackathon from '../../assets/hackathon.png'; // Cambia la ruta según la ubicación de tu imagen
-import imgUdc from '../../assets/logo_udc.png'; // Cambia la ruta según la ubicación de tu imagen
-import { register,login } from '../../services/auth'; // Importa la función de registro
+import { useNavigate } from 'react-router-dom'; // Importa el hook useNavigate
+import './Home.css'; 
+import imgHackathon from '../../assets/hackathon.png';
+import imgUdc from '../../assets/logo_udc.png';
+import { register, login } from '../../services/auth'; 
 
-// Definimos la interfaz para el estado del usuario
 interface User {
   id: string;
   name: string;
@@ -38,8 +38,13 @@ const Home = () => {
     { id: 14, name: 'Curso 14', selected: false },
     { id: 15, name: 'Curso 15', selected: false },
   ]);
-  
-  const [animateCourses, setAnimateCourses] = useState(false); // Estado para manejar la animación
+
+  const [animateCourses, setAnimateCourses] = useState(false);
+  const [id, setId] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate(); // Instancia del hook useNavigate
 
   const toggleForm = () => {
     setIsLogin(!isLogin);
@@ -53,32 +58,25 @@ const Home = () => {
 
   const handleTeacherToggle = () => {
     setIsTeacher(prev => {
-      // Al cambiar isTeacher, reiniciamos la animación
       setAnimateCourses(true);
-      setTimeout(() => setAnimateCourses(false), 0); // Reiniciamos la animación
+      setTimeout(() => setAnimateCourses(false), 0);
       return !prev;
     });
   };
-
-  const [id, setId] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [error, setError] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmitLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
-    // Llamamos a la función login pasando el email y password
     const userLogin: UserLogin = { username: id, password };
     const isSuccess = await login(userLogin);
 
     if (!isSuccess) {
       setError('Login failed. Please check your credentials.');
     } else {
-      // Acciones a realizar si el login es exitoso
       console.log('Login successful!');
+      navigate('/profile'); // Redirecciona a /profile después de login exitoso
     }
 
     setLoading(false);
@@ -92,17 +90,13 @@ const Home = () => {
     wallet: ''
   });
 
-  // Manejo de cambios en los campos del formulario
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   };
 
-  // Manejo del envío del formulario
   const handleSubmitRegister = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Evita el comportamiento predeterminado del formulario
-
-    console.log(user);
+    e.preventDefault();
     const data = {
       id: user.id,
       name: user.name,
@@ -114,10 +108,8 @@ const Home = () => {
 
     const success = await register(data);
     if (success) {
-      // Acciones en caso de éxito, por ejemplo, redirigir o mostrar un mensaje
       alert('Registro exitoso');
     } else {
-      // Manejo de error, por ejemplo, mostrar mensaje de error
       alert('Error en el registro');
     }
   };
@@ -181,7 +173,6 @@ const Home = () => {
                 <button type="submit">Register</button>
               </form>
 
-              {/* Slide Button para seleccionar entre Profesor y Estudiante */}
               <div className="slide-button-container">
                 <label className="switch">
                   <input type="checkbox" checked={isTeacher} onChange={handleTeacherToggle} />
@@ -191,7 +182,6 @@ const Home = () => {
                 </label>
               </div>
 
-              {/* Checklist de cursos solo visible para profesores */}
               {isTeacher && (
                 <>
                   <h3>Select Courses</h3>

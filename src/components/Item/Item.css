@@ -145,3 +145,8 @@
   font-size: 0.9em;
   color: #333;
 }
+
+.user-name{
+  position: relative;
+  bottom: 10px;
+}
