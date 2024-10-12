@@ -79,7 +79,7 @@ const Profile: React.FC = () => {
       </div>
 
       <div className="column column-right">
-        <p>Wallet-ID: <span>abcd1234efgh5678ijkl</span></p>
+        <p>Wallet-ID: <span>0x62feEa197EA26131E97A6BBd1ddbebb93f4b43cF</span></p><br></br>
         <p>Descripción del usuario: Co-fundador de Facebook, apasionado por la tecnología, la educación y la inteligencia artificial.</p>
 
         <ListOf title="Grupo" itemCount={groups.length} isOpen={groupsOpen} toggleList={toggleGroups}>
