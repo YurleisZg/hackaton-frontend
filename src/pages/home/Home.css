@@ -83,7 +83,7 @@ input {
   border-radius: 5px;
 }
 
-button {
+.register-form, .login-form button {
   
   user-select: none;
   font-weight: bold;

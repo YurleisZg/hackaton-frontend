@@ -1,120 +1,147 @@
 .item-container {
-  border: 1px solid #ccc;
+  border: 1px solid #e0e0e0;
   border-radius: 8px;
-  padding: 10px;
-  display: grid;
-  grid-auto-flow: column;
-  justify-content: space-between;
-  cursor: pointer; /* Indica que es interactivo */
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  background-color: #ffffff;
+}
+
+.item-container:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.left-side {
+  width: 300px;
+  padding-right: 16px;
+}
+
+.mid-side {
+  flex-grow: 1;
+  padding: 0 16px;
+  border-left: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+}
+
+.right-side {
+  width: 200px;
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .item-header {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
+  gap: 8px;
 }
 
 .item-name {
   margin: 0;
   font-size: 1.2em;
+  font-weight: 600;
+  color: #333;
 }
 
 .item-label {
-  background-color: #e0e0e0;
-  border-radius: 12px;
-  padding: 5px 10px;
-  font-size: 0.9em;
+  background-color: #f0f0f0;
+  border-radius: 16px;
+  padding: 4px 12px;
+  font-size: 0.85em;
+  font-weight: 500;
+  color: #666;
+  display: inline-block;
 }
 
 .item-description {
-  margin: 10px 0;
-  font-size: 0.9em;
+  margin: 0;
+  font-size: 0.95em;
+  color: #666;
+  line-height: 1.5;
 }
 
 .item-users {
   display: flex;
   align-items: center;
+  margin-top: 8px;
+}
+
+.user-container {
+  position: relative;
+  margin-right: -8px;
 }
 
 .user-avatar {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  margin-right: 5px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-name {
+  margin-left: 8px;
+  font-size: 0.9em;
+  color: #333;
 }
 
 .user-preview {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background-color: #e0e0e0;
-  margin-right: 5px;
+  background-color: #f0f0f0;
+  border: 2px solid #ffffff;
   font-size: 0.8em;
-  color: #333;
+  color: #666;
   font-weight: bold;
+  position: relative;
+  cursor: pointer;
 }
 
-.item-container {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  display: flex; /* Cambiado a flex */
-  align-items: center; /* Alinear elementos verticalmente */
-  cursor: pointer; /* Indica que es interactivo */
-}
-
-.left-side {
-  width: 300px; /* Ancho fijo para el lado izquierdo */
-}
-
-.mid-side {
-  flex-grow: 1; /* Ocupa el espacio restante */
-  display: flex; /* Para permitir la organización interna */
-  flex-direction: column; /* O alinear los elementos verticalmente si es necesario */
-}
-
-.right-side {
-  width: 200px; /* Ancho fijo para el lado derecho */
-}
-
-/* Estilo para el tooltip */
-/* Estilo para el tooltip */
 .tooltip {
   position: absolute;
   background-color: white;
-  border: 1px solid #ccc;
+  border: 1px solid #e0e0e0;
   border-radius: 8px;
-  padding: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 1000; /* Asegúrate de que el tooltip esté por encima de otros elementos */
-  left: 100%; /* Mueve el tooltip hacia la derecha */
-  top: 50%; /* Centra verticalmente */
-  transform: translateY(-50%); /* Ajusta la posición vertical para centrarlo */
-  margin-left: 10px; /* Espaciado adicional a la izquierda */
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
+.user-preview:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
 
-/* Estilo para los elementos dentro del tooltip */
 .tooltip-item {
   display: flex;
   align-items: center;
-  margin-bottom: 5px; /* Espaciado entre elementos */
+  padding: 6px 0;
 }
 
-/* Estilo para la imagen del tooltip */
 .tooltip-avatar {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  margin-right: 5px; /* Espacio entre imagen y nombre */
+  margin-right: 8px;
 }
 
-/* Opcional: Mover el tooltip al lado de la vista previa de usuarios */
-.user-preview {
-  position: relative; /* Para que el tooltip se posicione correctamente */
+.tooltip-item span {
+  font-size: 0.9em;
+  color: #333;
 }
