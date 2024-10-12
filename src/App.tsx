@@ -11,8 +11,11 @@ function App() {
   return (
     <>
 
+    {/* <Home></Home> */}
     {/*<Profile></Profile>*/}
-    {/*<SearchPage></SearchPage>*/}
+     {/*<SearchPage></SearchPage>*/}
+     <Contract/>
+
     <Home></Home> 
     {/*<Profile></Profile>
     <SearchPage></SearchPage>*/}
