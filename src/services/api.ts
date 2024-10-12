@@ -53,12 +53,11 @@ const api = {
         }
     
         const response = await fetch(baseUrl + url, {
-            method: 'POST', // Asegúrate de usar el método POST
+            method: 'POST', 
             headers: {
                 'Authorization': 'Bearer ' + token,
                 'Content-Type': 'application/json' // Asegúrate de indicar el tipo de contenido
-            },
-            // body: JSON.stringify(data) // Convertir los datos a JSON
+            }
         });
     
         if (!response.ok) {
