@@ -20,7 +20,7 @@ interface UserLogin {
 
 const Home = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [isTeacher, setIsTeacher] = useState(false); // Estado para identificar si es profesor
+  const [isTeacher, setIsTeacher] = useState(false);
   const [courses, setCourses] = useState([
     { id: 1, name: 'Curso 1', selected: false },
     { id: 2, name: 'Curso 2', selected: false },
