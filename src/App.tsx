@@ -1,14 +1,23 @@
-import { useState} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { login } from './components/login'
-import { Register } from './components/register'
+import { useState } from 'react';
+import './App.css';
+import { Login } from './components/login';
+import Register from './components/register';
 
 function App() {
+  const [isLogin, setIsLogin] = useState(true); // Estado para controlar el componente a mostrar
+
   return (
     <>
-      <Register/>
+      <div>
+        {/* Botón para alternar entre Login y Register */}
+        <button onClick={() => setIsLogin(true)}>Login</button>
+        <button onClick={() => setIsLogin(false)}>Register</button>
+      </div>
+
+      {/* Renderiza el componente según el estado */}
+      {isLogin ? <Login /> : <Register />}
+      
+      {/* Puedes dejar el siguiente código comentado o eliminarlo si no lo necesitas */}
       {/* <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -30,7 +39,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p> */}
     </>
-  )
+  );
 }
 
-export default App
+export default App;

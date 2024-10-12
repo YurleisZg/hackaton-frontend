@@ -1,21 +1,67 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { login } from '../services/auth'; // Importa la función de login
 
-export const Login = () => {
+// Definimos el tipo para los datos de login
+interface UserLogin {
+  id: string;
+  password: string;
+}
+
+export const Login: React.FC = () => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    // Llamamos a la función login pasando el id (email) y password
+    const userLogin: UserLogin = { id: email, password };
+    const isSuccess = await login(userLogin);
+
+    if (!isSuccess) {
+      setError('Login failed. Please check your credentials.');
+    } else {
+      // Acciones a realizar si el login es exitoso
+      console.log('Login successful!');
+    }
+
+    setLoading(false);
+  };
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login</h2>
-      <form>
-        <div>
+      <form onSubmit={handleSubmit} className="login-form">
+        <div className="form-group">
           <label>Email:</label>
-          <input type="email" required />
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            placeholder="Enter your email"
+          />
         </div>
-        <div>
+        <div className="form-group">
           <label>Password:</label>
-          <input type="password" required />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            placeholder="Enter your password"
+          />
         </div>
-        <button type="submit">Login</button>
+        {error && <div className="error-message">{error}</div>}
+        <button type="submit" disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
+        </button>
       </form>
     </div>
-  )
-}
+  );
+};
+export default Login;

@@ -15,12 +15,22 @@ interface UserLogin {
 
 async function register(user: UserRegister):Promise<boolean> {
     try {
-        await api.post('/registrar/', user);
+        await api.post('/registrar', user);
     } catch {
         return false;
     }
     return true;
 }
+
+async function connect():Promise<boolean> {
+    try {
+        await api.get('/connect');
+    } catch {
+        return false;
+    }
+    return true;
+}
+
 
 async function login(user: UserLogin):Promise<boolean> {
     try {
@@ -36,4 +46,4 @@ async function login(user: UserLogin):Promise<boolean> {
     return true;
 }
 
-export { register, login };
+export { register, login, connect };

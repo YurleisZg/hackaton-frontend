@@ -10,13 +10,12 @@ const api = {
     },
 
     post: async (url: string, data:unknown) => {
-        console.log((JSON.stringify(data).toString()));
         const response = await fetch(baseUrl + url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'accept': 'application/json', 
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': ''
               },
             body: JSON.stringify(data),
         });
