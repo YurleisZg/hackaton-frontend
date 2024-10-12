@@ -6,6 +6,7 @@ interface UserRegister {
     email: string;
     password: string;
     wallet: string;
+    registration_hashstring: string;
 }
 
 interface UserLogin {
